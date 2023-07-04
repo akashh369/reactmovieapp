@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import { Container } from '@mui/material';
 import './App.css';
+import Header from './components/Header/header';
+import MainNav from './components/MainNav'
+import { Route,Routes} from 'react-router-dom';
+// import { Search } from '@mui/icons-material';
+
+import Movies from './Pages/Movies/Movies';
+import Trending from './Pages/Trending/Trending';
+import Series from './Pages/Series/Series'
+import Search from './Pages/Search/Search'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header/>
+      <div className="app">
+      <Container>
+        <Routes>
+          <Route path='/' Component={Trending} /> 
+          {/* we are using exact because if this route is inside of other routes then it dont get overlap */}
+          <Route path='/movies' Component={Movies}/>
+          <Route path='/series' Component={Series}/>
+          <Route path='/search' Component={Search}/>
+        </Routes>
+      </Container>
+      </div>
+      <MainNav/>
+    </>
   );
 }
 
